@@ -81,4 +81,22 @@ sudo rm /mnt/data/index.html
 sudo rmdir /mnt/data
 ```
 
+## Practice - MySQL
 
+Create PV and PVC, then deployment and service :
+```bash
+kubectl apply -f practice-mysql/mysql-pv.yaml
+kubectl apply -f practice-mysql/mysql-deployment.yaml
+```
+
+Launch and access MySQL instance :
+```bash
+kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql -proot
+```
+
+Clean :
+```bash
+kubectl delete deployment,svc mysql
+kubectl delete pvc mysql-pv-claim
+kubectl delete pv mysql-pv-volume
+```
